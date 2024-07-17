@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
 import { createUserController, getUserController, updateUserController, deleteUserController, getUserPostsController } from '../../controllers/userController';
 import {
   createUser,

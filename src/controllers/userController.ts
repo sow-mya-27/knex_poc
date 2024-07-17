@@ -43,9 +43,6 @@ async function getUserPostsController(
 ) {
   try {
     const user = await getUserPosts(parseInt(req.params.id, 10));
-    // if (!user) {
-    //   return res.status(404).json({ message: "User not found" });
-    // }
     res.json(user);
   } catch (error) {
     next(error);

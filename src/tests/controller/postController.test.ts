@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
 import { createPostController, getPostController, updatePostController, deletePostController } from '../../controllers/postController';
 import { createPost, getPost, updatePost, deletePost } from '../../services/postModel';
 import { mockRequest, mockResponse, mockNext } from './commentController.test';

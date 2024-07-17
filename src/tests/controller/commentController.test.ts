@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { createCommentController, getCommentController, updateCommentController, deleteCommentController } from '../../controllers/commentController';
 import { createComment, getComment, updateComment, deleteComment } from '../../services/commentModel';
 

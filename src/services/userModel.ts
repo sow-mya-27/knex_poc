@@ -20,8 +20,6 @@ async function createUser(data: User): Promise<User[]> {
 
 async function getUser(id: number): Promise<User> {
   return db("users").where({ id }).first();
-  // return db.column('name', { by: 'email' }, 'id').select().from('users');
-
 }
 
 async function getUserPosts(id: number): Promise<any> {
