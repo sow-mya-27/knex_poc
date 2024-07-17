@@ -15,6 +15,13 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Install dependencies
         run: npm install
+        env: 
+          DB_CLIENT: pg
+          DB_HOST: localhost
+          DB_USER: root
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: knix_poc
+          PORT: 3000
       - name: Test and coverage
         run: npm run test
       - name: SonarCloud Scan
