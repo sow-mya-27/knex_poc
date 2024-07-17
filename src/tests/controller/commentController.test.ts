@@ -4,12 +4,12 @@ import { createComment, getComment, updateComment, deleteComment } from '../../s
 
 jest.mock('../../services/commentModel');
 
-const mockRequest = (body = {}, params = {}) => ({
+export const mockRequest = (body = {}, params = {}) => ({
   body,
   params,
 } as Request);
 
-const mockResponse = () => {
+export const mockResponse = () => {
   const res = {} as Response;
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
@@ -17,7 +17,7 @@ const mockResponse = () => {
   return res;
 };
 
-const mockNext = () => jest.fn();
+export const mockNext = () => jest.fn();
 
 describe('Comment Controller', () => {
   beforeEach(() => {

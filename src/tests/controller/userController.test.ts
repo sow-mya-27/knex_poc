@@ -7,23 +7,9 @@ import {
   deleteUser,
   getUserPosts
 } from '../../services/userModel';
+import { mockRequest, mockResponse, mockNext } from './commentController.test';
 
 jest.mock('../../services/userModel');
-
-const mockRequest = (body = {}, params = {}) => ({
-  body,
-  params,
-} as Request);
-
-const mockResponse = () => {
-  const res = {} as Response;
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  res.sendStatus = jest.fn().mockReturnValue(res);
-  return res;
-};
-
-const mockNext = () => jest.fn();
 
 describe('User Controller', () => {
   beforeEach(() => {

@@ -1,23 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { createPostController, getPostController, updatePostController, deletePostController } from '../../controllers/postController';
 import { createPost, getPost, updatePost, deletePost } from '../../services/postModel';
+import { mockRequest, mockResponse, mockNext } from './commentController.test';
 
 jest.mock('../../services/postModel');
-
-const mockRequest = (body = {}, params = {}) => ({
-  body,
-  params,
-} as Request);
-
-const mockResponse = () => {
-  const res = {} as Response;
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  res.sendStatus = jest.fn().mockReturnValue(res);
-  return res;
-};
-
-const mockNext = () => jest.fn();
 
 describe('Post Controller', () => {
   beforeEach(() => {
