@@ -1,0 +1,30 @@
+db('users')
+  .join('posts', 'users.id', 'posts.user_id')
+  .where({ 'posts.user_id': id })
+  .select('posts.*','users.*');
+
+
+knex.select('*').fromRaw('(select * from "users" where "age" > ?)', '18');
+
+knex('accounts').jsonExtract([
+  ['json_col', '$.name', 'accountName'],
+  ['json_col', '$.lastName', 'accountLastName'],
+]);
+
+knex.select('*')
+  .from('posts')
+  .whereNull('body')
+  .union(function () {
+    this.select('*').from('posts').whereNull('title');
+  });
+
+- upsert queries
+  knex('tableName')
+  .insert({
+    email: 'ignore@example.com',
+    name: 'John Doe',
+    active: true,
+  })
+  // ignore only on email conflict and active is true.
+  .onConflict(knex.raw('(email) where active'))
+  .ignore();
