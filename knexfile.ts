@@ -2,6 +2,7 @@ import { Knex } from 'knex';
 import dotenv from 'dotenv';
 
 dotenv.config();
+console.log(process.env.DB_CLIENT);
 
 const config: { [key: string]: Knex.Config } = {
   development: {
