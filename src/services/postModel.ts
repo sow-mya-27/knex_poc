@@ -2,9 +2,11 @@ import db from '../config/database';
 
 interface Post {
   id?: number;
+  post_id: number;
   user_id: number;
   title: string;
   body: string;
+  attachment?: string;  // New field
 }
 
 async function createPost(data: Post): Promise<Post[]> {
@@ -23,10 +25,4 @@ async function deletePost(id: number): Promise<number> {
   return db('posts').where({ id }).del();
 }
 
-export {
-  createPost,
-  getPost,
-  updatePost,
-  deletePost,
-  Post
-};
+export { createPost, getPost, updatePost, deletePost, Post };

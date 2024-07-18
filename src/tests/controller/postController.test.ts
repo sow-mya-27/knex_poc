@@ -1,5 +1,5 @@
 import { createPostController, getPostController, updatePostController, deletePostController } from '../../controllers/postController';
-import { createPost, getPost, updatePost, deletePost } from '../../services/postModel';
+import { createPost, getPost, updatePost, deletePost, Post } from '../../services/postModel';
 import { mockRequest, mockResponse, mockNext } from './commentController.test';
 
 jest.mock('../../services/postModel');
@@ -21,6 +21,26 @@ describe('Post Controller', () => {
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({ id: 1, title: 'New Post', content: 'This is a new post' });
   });
+
+
+  it('should create a post with attachment and return 201', async () => {
+   
+    const newPost: Post = { post_id: 1, user_id: 1, title: 'New Post', body: 'This is a new post', attachment: 'uploads/test.jpg' };
+    (createPost as jest.Mock).mockResolvedValue(newPost);
+    const req = mockRequest(newPost);
+    const res = mockResponse();
+    const next = mockNext();
+    
+    req.body = newPost;
+    req.file = { path: 'uploads/test.jpg' } as any;
+
+    await createPostController(req, res, next);
+
+    expect(createPost).toHaveBeenCalledWith(newPost);
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.json).toHaveBeenCalledWith(newPost);
+  });
+
 
   it('should get a post by id', async () => {
     const req = mockRequest({}, { id: '1' });
