@@ -9,8 +9,10 @@ import {
 
 async function createPostController(req: Request, res: Response, next: NextFunction) {
   try {
-    const post = await createPost(req.body as Post);
-    res.status(201).json(post);
+    const profilePic = req.file ? req.file.path : undefined; // file path is stored in req.file
+    const post: Post = { ...req.body, attachment: profilePic };
+    const newPost = await createPost(post);
+    res.status(201).json(newPost);
   } catch (error) {
     next(error);
   }

@@ -19,7 +19,10 @@ describe("Post Service", () => {
   });
 
   it("should create a new post", async () => {
-    const newPost:Post = { title: 'New Post', body: 'This is a new post',user_id:1,id:1  };
+    const newPost:Post = {
+      title: 'New Post', body: 'This is a new post', user_id: 1, id: 1,
+      post_id: 0
+    };
     (db as any).mockReturnValue({
       insert: jest.fn().mockReturnThis(),
       returning: jest.fn().mockResolvedValue(newPost),
